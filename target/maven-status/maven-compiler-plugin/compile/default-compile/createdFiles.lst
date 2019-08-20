@@ -1,0 +1,10 @@
+com\snails\kafka\serialization\CompanySerializer.class
+com\snails\kafka\entity\Company$CompanyBuilder.class
+com\snails\kafka\interceptor\ProducerInterceptorPrefixPlus.class
+com\snails\kafka\entity\Company.class
+com\snails\kafka\interceptor\ProducerInterceptorPrefix.class
+com\snails\kafka\partitioner\CustomPartitioner.class
+com\snails\kafka\consumer\ConsumerFastStart.class
+com\snails\kafka\producer\ProducerFastStart.class
+com\snails\kafka\serialization\CompanyDeserializer.class
+com\snails\kafka\producer\ProducerFastStart$1.class
