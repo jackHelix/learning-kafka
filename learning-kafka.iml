@@ -16,5 +16,9 @@
     <orderEntry type="library" name="Maven: org.xerial.snappy:snappy-java:1.1.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.8" level="project" />
+    <orderEntry type="library" name="Maven: io.protostuff:protostuff-core:1.5.4" level="project" />
+    <orderEntry type="library" name="Maven: io.protostuff:protostuff-api:1.5.4" level="project" />
+    <orderEntry type="library" name="Maven: io.protostuff:protostuff-runtime:1.5.4" level="project" />
+    <orderEntry type="library" name="Maven: io.protostuff:protostuff-collectionschema:1.5.4" level="project" />
   </component>
 </module>

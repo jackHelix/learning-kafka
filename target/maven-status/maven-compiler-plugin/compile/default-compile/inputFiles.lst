@@ -2,7 +2,9 @@ E:\Develop\learning-kafka\src\main\java\com\snails\kafka\producer\ProducerFastSt
 E:\Develop\learning-kafka\src\main\java\com\snails\kafka\partitioner\CustomPartitioner.java
 E:\Develop\learning-kafka\src\main\java\com\snails\kafka\consumer\ConsumerFastStart.java
 E:\Develop\learning-kafka\src\main\java\com\snails\kafka\interceptor\ProducerInterceptorPrefixPlus.java
+E:\Develop\learning-kafka\src\main\java\com\snails\kafka\serialization\protostuff\ProtostuffSerializer.java
 E:\Develop\learning-kafka\src\main\java\com\snails\kafka\serialization\CompanySerializer.java
 E:\Develop\learning-kafka\src\main\java\com\snails\kafka\entity\Company.java
 E:\Develop\learning-kafka\src\main\java\com\snails\kafka\serialization\CompanyDeserializer.java
+E:\Develop\learning-kafka\src\main\java\com\snails\kafka\serialization\protostuff\ProtostuffDeserializer.java
 E:\Develop\learning-kafka\src\main\java\com\snails\kafka\interceptor\ProducerInterceptorPrefix.java
