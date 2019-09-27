@@ -25,7 +25,7 @@ public class ProtostuffDeserializer implements Deserializer<Company> {
         if (data == null) {
             return null;
         }
-        Schema schema = RuntimeSchema.getSchema(data.getClass());
+        Schema schema = RuntimeSchema.getSchema(Company.class);
         Company cmy = new Company();
         ProtostuffIOUtil.mergeFrom(data, cmy, schema);
         return cmy;

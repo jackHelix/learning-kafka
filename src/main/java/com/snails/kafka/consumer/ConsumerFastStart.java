@@ -6,11 +6,14 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -38,8 +41,8 @@ public class ConsumerFastStart {
         prop.put("client.id","cousumer.client.id.demo");*/
 
         Properties prop = new Properties();
-        prop.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        //prop.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        prop.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        //prop.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         //prop.put("value.deserializer", "com.snails.kafka.serialization.CompanyDeserializer");
         prop.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ProtostuffDeserializer.class.getName());
         prop.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerList);
@@ -79,14 +82,38 @@ public class ConsumerFastStart {
         try {
             while (true) {
                 ConsumerRecords<String, Company> records = consumer.poll(Duration.ofMillis(1000));
+                //计算消息集中的消息个数
+                int count = records.count();
+                //判断消息集是否为空
+                boolean empty = records.isEmpty();
                 //ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
-                for (ConsumerRecord<String, Company> record : records) {
-                //for (ConsumerRecord<String, String> record : records) {
+                /*for (ConsumerRecord<String, Company> record : records) {
+                    //for (ConsumerRecord<String, String> record : records) {
                     //打印消息所属   主题|分区|偏移量|
                     System.out.println("topic= " + record.topic() + ", parttition= " + record.partition() + ", offset =" + record.offset());
                     //打印消费消息
                     System.out.println(record.value());
+                }*/
+
+                //获取ConsumerRecords消息集中指定分区的消息 调用方法records(TopicPartition partition) 获取消息集所有分区:records.partitions()
+                /*for (TopicPartition tp : records.partitions()) {
+                    for (ConsumerRecord<String, Company> record : records.records(tp)) {
+                        //for (ConsumerRecord<String, String> record : records) {
+                        //打印消息所属   主题|分区|偏移量|
+                        System.out.println("topic= " + record.topic() + ", parttition= " + record.partition() + ", offset =" + record.offset());
+                        //打印消费消息
+                        System.out.println(record.value());
+                    }
+                }*/
+
+                //使用ConsumerRecords 中的record(String topic) 按照主题维度消费消息
+                List<String> topics = Arrays.asList(topic);
+                for (String topic : topics) {
+                    for (ConsumerRecord<String, Company> record : records.records(topic)) {
+                        System.out.println(record.topic() + " : " + record.value());
+                    }
                 }
+
             }
         } catch (
                 Exception e)

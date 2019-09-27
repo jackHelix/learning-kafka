@@ -18,4 +18,10 @@ import lombok.NoArgsConstructor;
 public class Company {
     private String name;
     private String address;
+    private String extend;
+
+    public Company(String address, String extend) {
+        this.address = address;
+        this.extend = extend;
+    }
 }

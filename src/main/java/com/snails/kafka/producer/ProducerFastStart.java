@@ -1,17 +1,11 @@
 package com.snails.kafka.producer;
 
 import com.snails.kafka.entity.Company;
-import com.snails.kafka.interceptor.ProducerInterceptorPrefix;
-import com.snails.kafka.interceptor.ProducerInterceptorPrefixPlus;
-import com.snails.kafka.partitioner.CustomPartitioner;
-import com.snails.kafka.serialization.CompanySerializer;
 import com.snails.kafka.serialization.protostuff.ProtostuffSerializer;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.util.Properties;
-import java.util.concurrent.Future;
 
 /**
  * @Author snails
@@ -44,7 +38,7 @@ public class ProducerFastStart {
          * acks=0:生产者发送消息之后不需要等到服务器响应，可以达到大吞吐量
          * acks=-1 or acks=all 需要等到所有ISR中的副本都成功写入并收到来自服务器的成功响应
          */
-        prop.put(ProducerConfig.ACKS_CONFIG,"0");
+        prop.put(ProducerConfig.ACKS_CONFIG, "0");
         return prop;
     }
 
@@ -60,9 +54,9 @@ public class ProducerFastStart {
         //构建所需要发送的消息
         //final ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, "kafka hello world");
 
-        Company data = Company.builder().name("中国移动").address("广州天河区大观路").build();
+        Company data = Company.builder().name("中国移动").address("广州天河区大观路").extend("拓展字段").build();
         KafkaProducer<String, Company> producer = new KafkaProducer<String, Company>(properties);
-        ProducerRecord<String, Company> record=new ProducerRecord<String, Company>(topic,data);
+        ProducerRecord<String, Company> record = new ProducerRecord<String, Company>(topic, data);
         //发送消息
         try {
             //发送的消息模式1 发后即忘
