@@ -53,7 +53,6 @@ public class ProducerFastStart {
         //KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties);
         //构建所需要发送的消息
         //final ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, "kafka hello world");
-
         Company data = Company.builder().name("中国移动").address("广州天河区大观路").extend("拓展字段").build();
         KafkaProducer<String, Company> producer = new KafkaProducer<String, Company>(properties);
         ProducerRecord<String, Company> record = new ProducerRecord<String, Company>(topic, data);
